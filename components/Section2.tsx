@@ -1,5 +1,8 @@
 export default function Section2() {
-    return(
-        <p>section 2 placeholder</p>
-    )
+  return (
+    <>
+      <h1>Vendedor</h1>
+      <h2>Comprador</h2>
+    </>
+  )
 }
