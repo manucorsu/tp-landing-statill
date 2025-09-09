@@ -321,7 +321,7 @@ export default function Section3() {
             </div>
             <TablaCart products={products} />
           </div>
-        </div>
+        </div><br /><br /><br />
         <div className="absolute left-0 right-0 bottom-0 w-full pointer-events-none">
           <CloudSep color="grey" />
         </div>

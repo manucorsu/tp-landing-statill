@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SpikeSep from "./SpikeSep";
 
 export default function Section2() {
@@ -54,9 +55,15 @@ export default function Section2() {
   );
 
   return (
-    <section>
+    <section className="relative overflow-hidden">
+      <img
+        src="/rectangumas-btm.svg"
+        alt=""
+        className="absolute bottom-[-150px] left-0 w-full z-0 pointer-events-none"
+      />
+
       <br />
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           <div className="text-center md:text-left">
             <h3 className="text-3xl font-extrabold text-[#FF3938]">Vendedor</h3>
@@ -81,7 +88,10 @@ export default function Section2() {
         </div>
       </div>
       <br />
-      <SpikeSep color="red" />
+      {/* SpikeSep encima del fondo */}
+      <div className="relative z-10">
+        <SpikeSep color="red" />
+      </div>
     </section>
   );
 }

@@ -128,7 +128,12 @@ export default function Section4() {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 py-0 bg-[#EEEEEE] relative">
+    <div className="flex flex-col items-center min-h-screen p-6 py-0 bg-[#EEEEEE] relative overflow-hidden">
+            <img
+        src="/rectangumas-btm.svg"
+        alt=""
+        className="absolute bottom-[-85px] left-0 w-full z-0 pointer-events-none"
+      />
       {/* Título */}
       <h1 className="text-[#FF3938] font-bold text-3xl text-center mb-6">
         Encuentra el local que necesites en cuestión de segundos.
