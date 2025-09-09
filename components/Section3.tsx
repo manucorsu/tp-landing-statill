@@ -326,6 +326,7 @@ export default function Section3() {
           <CloudSep color="grey" />
         </div>
       </section>
+      <div className="bg-[#EEEEEE]"><br /></div>
     </>
   );
 }

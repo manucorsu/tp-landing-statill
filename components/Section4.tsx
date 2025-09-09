@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Store } from "./Map";
+import SpikeSep from "./SpikeSep";
 
 export const stores: Store[] = [
   {
@@ -127,13 +128,13 @@ export default function Section4() {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6 bg-[#EEEEEE]">
+    <div className="flex flex-col items-center min-h-screen p-6 py-0 bg-[#EEEEEE] relative">
       {/* Título */}
       <h1 className="text-[#FF3938] font-bold text-3xl text-center mb-6">
         Encuentra el local que necesites en cuestión de segundos.
       </h1>
 
-      <div className="flex flex-col md:flex-row items-start gap-6">
+      <div className="flex flex-col md:flex-row items-start gap-6 w-full justify-center">
         {/* Sidebar izquierda */}
         <div className="flex flex-col gap-4 w-64">
           {/* Barra de búsqueda */}
@@ -172,6 +173,10 @@ export default function Section4() {
         <div className="border-20 border-[#FF3938] rounded-lg overflow-hidden">
           <Map stores={filteredStores} />
         </div>
+      </div>
+
+      <div className="w-full mt-auto">
+        <SpikeSep color="white" />
       </div>
     </div>
   );
