@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SquarePen, SquareCheck } from "lucide-react";
+import CloudSep from "./CloudSep";
+
 interface Product {
   id: number;
   name: string;
@@ -35,7 +37,7 @@ function ProductCard({
     : "/statill.svg";
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setEdited((prev) => ({
@@ -83,7 +85,7 @@ function ProductCard({
       <div className="text-right">
         {isEditing ? (
           <>
-          <span className="text-xs text-[#000]">cantidad: </span>
+            <span className="text-xs text-[#000]">cantidad: </span>
             <input
               type="number"
               name="qty"
@@ -92,7 +94,7 @@ function ProductCard({
               className="w-16 text-sm text-gray-600 border rounded px-1 mb-1"
               placeholder="0"
             />
-          <span className="text-xs text-[#000]">precio: </span>
+            <span className="text-xs text-[#000]">precio: </span>
             <input
               type="number"
               name="price"
@@ -124,11 +126,7 @@ function ProductCard({
   );
 }
 
-function TablaCart({
-  products,
-}: {
-  products: Product[];
-}) {
+function TablaCart({ products }: { products: Product[] }) {
   const [cart, setCart] = useState<
     { productId: number | null; quantity: number }[]
   >([
@@ -139,17 +137,13 @@ function TablaCart({
 
   const handleProductChange = (rowIndex: number, productId: number) => {
     setCart((prev) =>
-      prev.map((row, i) =>
-        i === rowIndex ? { productId, quantity: 1 } : row
-      )
+      prev.map((row, i) => (i === rowIndex ? { productId, quantity: 1 } : row)),
     );
   };
 
   const handleQuantityChange = (rowIndex: number, qty: number) => {
     setCart((prev) =>
-      prev.map((row, i) =>
-        i === rowIndex ? { ...row, quantity: qty } : row
-      )
+      prev.map((row, i) => (i === rowIndex ? { ...row, quantity: qty } : row)),
     );
   };
 
@@ -181,7 +175,7 @@ function TablaCart({
                 .filter(Boolean);
 
               const availableProducts = products.filter(
-                (p) => !usedIds.includes(p.id)
+                (p) => !usedIds.includes(p.id),
               );
 
               return (
@@ -202,9 +196,7 @@ function TablaCart({
                       ))}
                     </select>
                   </td>
-                  <td className="py-4">
-                    {product ? ars(product.price) : "-"}
-                  </td>
+                  <td className="py-4">{product ? ars(product.price) : "-"}</td>
                   <td className="py-4">
                     {product ? (
                       <input
@@ -232,17 +224,16 @@ function TablaCart({
 
         <div className="mt-6 flex flex-col items-center justify-center w-full">
           <div className="font-semibold text-center">
-            Precio total final:{" "}
-            <span className="font-bold">{ars(total)}</span>
+            Precio total final: <span className="font-bold">{ars(total)}</span>
           </div>
-          <div className="font-semibold text-center text-s text-[#777777]">Sin impuestos nacionales: {ars(total - (0.21*total))}</div>
+          <div className="font-semibold text-center text-s text-[#777777]">
+            Sin impuestos nacionales: {ars(total - 0.21 * total)}
+          </div>
           <button className="bg-red-500 text-white font-semibold rounded-full px-6 py-2 shadow mt-4">
             Cobrar
           </button>
         </div>
       </div>
-
-      <div className="mt-6 hidden md:block"></div>
     </div>
   );
 }
@@ -277,7 +268,7 @@ export default function Section3() {
   const cantidadesEjemplo = [3, 2, 2];
   const total = products.reduce(
     (acum, p, i) => acum + p.price * (cantidadesEjemplo[i] ?? 1),
-    0
+    0,
   );
 
   const handleUpdate = (updated: Product) => {
@@ -300,37 +291,40 @@ export default function Section3() {
   };
   return (
     <>
-      <section className="min-h-screen bg-[#FF3938] p-8 text-white">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-extrabold mb-6 text-center">
-        Organizar y vender tu catálogo nunca fue tan simple.
-        </h1>
-        <button
-        onClick={handleAddProduct}
-        className="flex items-center gap-3 bg-white text-red-500 rounded-xl px-4 py-3 font-semibold shadow-md"
-        >
-        <span className="bg-white/0 rounded-full w-8 h-8 flex items-center justify-center border border-gray-200">
-          +
-        </span>
-        Agregar un producto
-        </button>
-        <br />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        <div className="md:col-span-1 space-y-4">
-          <div className="space-y-3">
-          {products.map((p) => (
-            <ProductCard
-            key={p.id}
-            product={p}
-            onUpdate={handleUpdate}
-            startEditing={editingNewId === p.id}
-            />
-          ))}
+      <section className="min-h-screen bg-[#FF3938] p-8 text-white relative overflow-hidden flex flex-col">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl font-extrabold mb-6 text-center">
+            Organizar y vender tu catálogo nunca fue tan simple.
+          </h1>
+          <button
+            onClick={handleAddProduct}
+            className="flex items-center gap-3 bg-white text-red-500 rounded-xl px-4 py-3 font-semibold shadow-md"
+          >
+            <span className="bg-white/0 rounded-full w-8 h-8 flex items-center justify-center border border-gray-200">
+              +
+            </span>
+            Agregar un producto
+          </button>
+          <br />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div className="md:col-span-1 space-y-4">
+              <div className="space-y-3">
+                {products.map((p) => (
+                  <ProductCard
+                    key={p.id}
+                    product={p}
+                    onUpdate={handleUpdate}
+                    startEditing={editingNewId === p.id}
+                  />
+                ))}
+              </div>
+            </div>
+            <TablaCart products={products} />
           </div>
         </div>
-        <TablaCart products={products}/>
+        <div className="absolute left-0 right-0 bottom-0 w-full pointer-events-none">
+          <CloudSep color="grey" />
         </div>
-      </div>
       </section>
     </>
   );
