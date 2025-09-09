@@ -1,4 +1,5 @@
 import SpikeSep from "./SpikeSep";
+
 export default function Section2() {
   type FeaturesTableData = {
     readonly vendedor: {
