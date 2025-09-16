@@ -3,11 +3,11 @@ type SpikesColor = "red" | "white";
 export default function SpikeSep({
   height = 93,
   overlap = 10,
-  color: SpikesColor = "white",
+  color = "white",
   ariaLabel = "spike separator",
   className = "spike-separator",
 }) {
-  const src = SpikesColor === "white" ? "/pinchos.svg" : "/pinchos-red.svg";
+  const src = color === "white" ? "/pinchos.svg" : "/pinchos-red.svg";
   return (
     <div
       className={`relative w-full overflow-hidden pointer-events-none ${className}`}

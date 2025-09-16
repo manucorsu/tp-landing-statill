@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { SquarePen, SquareCheck } from "lucide-react";
 import CloudSep from "./CloudSep";
+import AnimatedButton from "./AnimatedButton";
 
 interface Product {
   id: number;
@@ -229,9 +230,7 @@ function TablaCart({ products }: { products: Product[] }) {
           <div className="font-semibold text-center text-s text-[#777777]">
             Sin impuestos nacionales: {ars(total - 0.21 * total)}
           </div>
-          <button className="bg-red-500 text-white font-semibold rounded-full px-6 py-2 shadow mt-4">
-            Cobrar
-          </button>
+          <AnimatedButton text="Cobrar"/>
         </div>
       </div>
     </div>
