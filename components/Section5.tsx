@@ -1,7 +1,8 @@
+"use client";
 import Image from "next/image";
 import { UserRound, AtSign } from "lucide-react";
 import QRCode from "react-qr-code";
-import SpikeSep from "./SpikeSep";
+import AnimatedButton from "./AnimatedButton";
 
 export default function Section5() {
   return (
@@ -43,12 +44,7 @@ export default function Section5() {
         />
         </div>
 
-        <button
-        type="submit"
-        className="bg-red-500 text-white font-semibold rounded-full py-2 px-6 w-28 hover:bg-red-600 self-center"
-        >
-        Enviar
-        </button>
+        <AnimatedButton text="Enviar"/>
       </form>
       </div>
 

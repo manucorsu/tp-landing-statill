@@ -8,7 +8,7 @@ export default function Section1() {
     <div className="min-h-screen bg-[#eeeeee] relative overflow-hidden">
       {/* Background Pattern */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0" 
         aria-hidden="true"
         style={{
           backgroundImage: "url(/rectangumas.svg)",
