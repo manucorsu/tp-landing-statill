@@ -5,7 +5,6 @@ import { SquarePen, SquareCheck } from "lucide-react";
 import CloudSep from "./CloudSep";
 import AnimatedButton from "./AnimatedButton";
 
-
 interface Product {
   id: number;
   name: string;
@@ -160,51 +159,48 @@ function TablaCart({ products }: { products: Product[] }) {
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-      // Clear any existing interval to prevent multiple animations
-      if (intervalIdRef.current) {
-        clearInterval(intervalIdRef.current);
-      }
-    
-      // Create a new interval only if the display and target values are different
-      if (displayValue !== total) {
-        intervalIdRef.current = setInterval(() => {
-          setDisplayValue(prevValue => {
-            const difference = total - prevValue;
-            const isIncreasing = difference > 0;
-    
-            // Determine the step, ensuring a smoother transition
-            let step = difference * 0.1;
-    
-            // If the step is too small, use a fixed step to guarantee progress
-            if (Math.abs(step) < 1) {
-              step = isIncreasing ? 50 : -50;
-            }
-    
-            const nextValue = prevValue + step;
-    
-            // Check if the next value will overshoot the target
-            if ((isIncreasing && nextValue >= total) || (!isIncreasing && nextValue <= total)) {
-              clearInterval(intervalIdRef.current!);
-              return total; // Snap to the final value and stop
-            }
-    
-            // Use toFixed to avoid floating-point errors during the animation
-            return parseFloat(nextValue.toFixed(3));
-          });
-        }, 16); // A delay of ~16ms for a smooth, 60fps animation
-      }
-    
-      // Cleanup function to clear the interval when the component unmounts
-      return () => {
-        if (intervalIdRef.current) {
-          clearInterval(intervalIdRef.current);
-        }
-      };
-    }, [total, displayValue]); // Re-run effect when the target or display value changes
+    // Clear any existing interval to prevent multiple animations
+    if (intervalIdRef.current) {
+      clearInterval(intervalIdRef.current);
+    } // Create a new interval only if the display and target values are different
+
+    if (displayValue !== total) {
+      intervalIdRef.current = setInterval(() => {
+        setDisplayValue((prevValue) => {
+          const difference = total - prevValue;
+          const isIncreasing = difference > 0; // Determine the step, ensuring a smoother transition
+
+          let step = difference * 0.1; // If the step is too small, use a fixed step to guarantee progress
+
+          if (Math.abs(step) < 1) {
+            step = isIncreasing ? 50 : -50;
+          }
+
+          const nextValue = prevValue + step; // Check if the next value will overshoot the target
+
+          if (
+            (isIncreasing && nextValue >= total) ||
+            (!isIncreasing && nextValue <= total)
+          ) {
+            clearInterval(intervalIdRef.current!);
+            return total; // Snap to the final value and stop
+          } // Use toFixed to avoid floating-point errors during the animation
+
+          return parseFloat(nextValue.toFixed(3));
+        });
+      }, 16); // A delay of ~16ms for a smooth, 60fps animation
+    } // Cleanup function to clear the interval when the component unmounts
+
+    return () => {
+      if (intervalIdRef.current) {
+        clearInterval(intervalIdRef.current);
+      }
+    };
+  }, [total, displayValue]); // Re-run effect when the target or display value changes
 
   // A useEffect to synchronize your total variable with the targetValue
   useEffect(() => {
-  setTargetValue(total);
+    setTargetValue(total);
   }, [total]);
 
   return (
@@ -249,7 +245,7 @@ function TablaCart({ products }: { products: Product[] }) {
                         </option>
                       ))}
                     </select>
-                  </td> 
+                  </td>
                   <td className="py-4">{product ? ars(product.price) : "-"}</td>
                   <td className="py-4">
                     {product ? (
@@ -278,12 +274,13 @@ function TablaCart({ products }: { products: Product[] }) {
 
         <div className="mt-6 flex flex-col items-center justify-center w-full">
           <div className="font-semibold text-center">
-            Precio total final: <span className="font-bold">{ars(displayValue)}</span>
+            Precio total final:{" "}
+            <span className="font-bold">{ars(displayValue)}</span>
           </div>
           <div className="font-semibold text-center text-s text-[#777777]">
             Sin impuestos nacionales: {ars(displayValue - 0.21 * displayValue)}
           </div>
-          <AnimatedButton text="Cobrar"/>
+          <AnimatedButton text="Cobrar" />
         </div>
       </div>
     </div>
@@ -373,12 +370,17 @@ export default function Section3() {
             </div>
             <TablaCart products={products} />
           </div>
-        </div><br /><br /><br />
+        </div>
+        <br />
+        <br />
+        <br />
         <div className="absolute left-0 right-0 bottom-0 w-full pointer-events-none">
           <CloudSep color="grey" />
         </div>
       </section>
-      <div className="bg-[#EEEEEE]"><br /></div>
+      <div className="bg-[#EEEEEE]">
+        <br />
+      </div>
     </>
   );
 }

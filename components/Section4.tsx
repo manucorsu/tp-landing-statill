@@ -129,7 +129,7 @@ export default function Section4() {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-6 py-0 bg-[#EEEEEE] relative overflow-hidden">
-            <img
+      <img
         src="/rectangumas-btm.svg"
         alt=""
         className="absolute bottom-[-85px] left-0 w-full z-0 pointer-events-none"

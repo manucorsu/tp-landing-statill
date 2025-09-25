@@ -20,8 +20,6 @@ export interface Store {
   };
 }
 
-
-
 function getCategoryIcon(category: string) {
   const SIZE = 16;
   const color = "white";
@@ -89,14 +87,14 @@ interface LeafletMapProps {
 
 export default function Map({ stores }: LeafletMapProps) {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const map = L.map('map', {
-      center: [-34.57432, -58.47950],
+    const map = L.map("map", {
+      center: [-34.57432, -58.4795],
       zoom: 14,
     });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
@@ -104,7 +102,7 @@ export default function Map({ stores }: LeafletMapProps) {
     stores.forEach((store) => {
       const marker = L.marker(
         [parseFloat(store.coordinates.lat), parseFloat(store.coordinates.lng)],
-        { icon: getCategoryIcon(store.category) }
+        { icon: getCategoryIcon(store.category) },
       ).addTo(map);
 
       marker.bindPopup(`

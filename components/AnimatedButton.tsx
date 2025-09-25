@@ -13,7 +13,7 @@ export default function AnimatedButton({ text = "" }) {
       <button
         onClick={handleClick}
         className={`bg-[#FF3938] text-white font-semibold rounded-full px-6 py-2 shadow mt-4 relative overflow-hidden transform transition-all ${
-          clicked ? 'scale-95' : 'scale-100'
+          clicked ? "scale-95" : "scale-100"
         }`}
       >
         {text}
