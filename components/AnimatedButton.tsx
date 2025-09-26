@@ -12,8 +12,8 @@ export default function AnimatedButton({ text = "" }) {
     <div className="relative inline-block">
       <button
         onClick={handleClick}
-        className={`bg-[#FF3938] text-white font-semibold rounded-full px-6 py-2 shadow mt-4 relative overflow-hidden transform transition-all ${
-          clicked ? "scale-95" : "scale-100"
+        className={`cursor-pointer text-white font-semibold rounded-full px-6 py-2 shadow mt-4 relative overflow-hidden transform transition-all ${
+          clicked ? "scale-70 bg-[#962020]" : "scale-100 bg-[#FF3938]"
         }`}
       >
         {text}
