@@ -102,8 +102,8 @@ export const stores: Store[] = [
 const Map = dynamic(() => import("./Map"), { ssr: false });
 
 export default function Section4() {
-  const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
 
   // 🔎 Filtrado simple
   const filteredStores = stores.filter((s) => {
@@ -144,7 +144,12 @@ export default function Section4() {
         <div className="flex flex-col gap-4 w-64">
           {/* Barra de búsqueda */}
           <div className="flex items-center gap-2 border rounded-full px-4 py-2 bg-white shadow-sm">
-            <Search size={16} className="min-w-[16px] min-h-[16px]" />
+            <Search
+              size={16}
+              className={`min-w-[16px] min-h-[16px] transition-transform duration-200 ${
+                search ? "scale-120" : "scale-100"
+              }`}
+            />
             <input
               type="text"
               placeholder="Busca un local..."
