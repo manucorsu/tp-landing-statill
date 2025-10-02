@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 import Image from "next/image";
 import CloudSep from "./CloudSep";
 import { Typewriter } from "react-simple-typewriter";
-import Stats from "./Stats"
+import Stats from "./Stats";
 
 export default function Section1() {
   return (
@@ -73,7 +73,7 @@ export default function Section1() {
                 </p>
               </div>
             </div>
-            <Stats/>
+            <Stats />
           </div>
         </div>
         <CloudSep />

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { SquarePen, SquareCheck } from "lucide-react";
 import CloudSep from "./CloudSep";
 import AnimatedButton from "./AnimatedButton";
+import { firstXChars } from "../lib/utils";
 
 interface Product {
   id: number;
@@ -32,6 +33,12 @@ function ProductCard({
 }) {
   const [isEditing, setIsEditing] = useState(startEditing);
   const [edited, setEdited] = useState<Product>(product);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Trigger the pop-in animation after mount
+    setMounted(true);
+  }, []);
 
   const imagePath = [1, 2, 3].includes(product.id)
     ? `/product${product.id}.png`
@@ -53,7 +60,16 @@ function ProductCard({
   };
 
   return (
-    <div className="flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm">
+    <div
+      className={`
+        flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm
+        transform transition-transform duration-300
+        ${mounted ? "scale-100" : "scale-0"}
+      `}
+      style={{
+        transitionTimingFunction: "cubic-bezier(0.68, -0.55, 0.27, 1.55)", // springy pop
+      }}
+    >
       <Image src={imagePath} alt={product.name} width={56} height={56} />
 
       <div className="flex-1">
@@ -196,9 +212,8 @@ function TablaCart({ products }: { products: Product[] }) {
         clearInterval(intervalIdRef.current);
       }
     };
-  }, [total, displayValue]); // Re-run effect when the target or display value changes
+  }, [total, displayValue]);
 
-  // A useEffect to synchronize your total variable with the targetValue
   useEffect(() => {
     setTargetValue(total);
   }, [total]);
@@ -241,7 +256,7 @@ function TablaCart({ products }: { products: Product[] }) {
                       <option value="">Seleccionar...</option>
                       {availableProducts.map((p) => (
                         <option key={p.id} value={p.id}>
-                          {p.name}
+                          {firstXChars(p.name, "Skip para diluir".length)}
                         </option>
                       ))}
                     </select>
