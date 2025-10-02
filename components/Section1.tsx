@@ -4,6 +4,7 @@ import QRCode from "react-qr-code";
 import Image from "next/image";
 import CloudSep from "./CloudSep";
 import { Typewriter } from "react-simple-typewriter";
+import Stats from "./Stats"
 
 export default function Section1() {
   return (
@@ -72,31 +73,7 @@ export default function Section1() {
                 </p>
               </div>
             </div>
-
-            {/* Estadísticas */}
-            <div className="space-y-8 bg-[#D9D9D9] rounded-3xl p-8 md:p-12 shadow-lg w-max mx-auto">
-              <div className="flex gap-3">
-                <UserRound className="w-8 h-8 text-[#777777]" strokeWidth={3} />
-                <p className="text-3xl font-bold text-[#777777]">
-                  +100.000 usuarios
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <Store className="w-8 h-8 text-[#777777]" strokeWidth={3} />
-                <p className="text-3xl font-bold text-[#777777]">
-                  +40.000 comercios registrados
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <CircleDollarSign
-                  className="w-8 h-8 text-[#777777]"
-                  strokeWidth={3}
-                />
-                <p className="text-3xl font-bold text-[#777777]">
-                  +500.000 productos vendidos
-                </p>
-              </div>
-            </div>
+            <Stats/>
           </div>
         </div>
         <CloudSep />

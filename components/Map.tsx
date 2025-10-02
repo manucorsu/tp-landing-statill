@@ -106,7 +106,7 @@ export default function Map({ stores }: LeafletMapProps) {
     stores.forEach((store) => {
       const marker = L.marker(
         [parseFloat(store.coordinates.lat), parseFloat(store.coordinates.lng)],
-        { icon: getCategoryIcon(store.category) }
+        { icon: getCategoryIcon(store.category) },
       ).addTo(map);
 
       marker.bindPopup(`
