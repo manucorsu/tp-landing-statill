@@ -1,4 +1,4 @@
-{
+{ // el error se queja de que no encuentra /.next lo cual es normal si nunca se buildeó con npm run build.
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],

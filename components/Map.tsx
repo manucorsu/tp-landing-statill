@@ -90,9 +90,13 @@ export default function Map({ stores }: LeafletMapProps) {
     if (typeof window === "undefined") return;
 
     const map = L.map("map", {
-      center: [-34.57432, -58.4795],
+      center: [-34.572451, -58.483658],
       zoom: 14,
     });
+
+    // map.on("moveend", function () {
+    //   alert(map.getCenter());
+    // });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -102,7 +106,7 @@ export default function Map({ stores }: LeafletMapProps) {
     stores.forEach((store) => {
       const marker = L.marker(
         [parseFloat(store.coordinates.lat), parseFloat(store.coordinates.lng)],
-        { icon: getCategoryIcon(store.category) },
+        { icon: getCategoryIcon(store.category) }
       ).addTo(map);
 
       marker.bindPopup(`
