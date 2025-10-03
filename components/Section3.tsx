@@ -362,7 +362,7 @@ export default function Section3() {
           </h1>
           <button
             onClick={handleAddProduct}
-            className="flex items-center gap-3 bg-white text-red-500 rounded-xl px-4 py-3 font-semibold shadow-md"
+            className="cursor-pointer flex items-center gap-3 bg-white text-red-500 rounded-xl px-4 py-3 font-semibold shadow-md"
           >
             <span className="bg-white/0 rounded-full w-8 h-8 flex items-center justify-center border border-gray-200">
               +

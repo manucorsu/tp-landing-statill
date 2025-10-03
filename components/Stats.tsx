@@ -29,7 +29,7 @@ export default function Stats() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % stats.length);
-    }, 2000);
+    }, 3500);
 
     return () => clearInterval(timer);
   }, []);
